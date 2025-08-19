@@ -1,1 +1,143 @@
-code for an online calculator
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Calculator</title>
+<style>
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+body {
+font-family: Arial, sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+width=100%;
+height: 100vh;
+margin: 0;
+background: linear-gradient(45DEG,black);
+}
+/*Giving styles to claculator */
+.calculator {
+width: 400px;
+height: 80vh;
+background: transparent;
+padding: 20px;
+border-radius: 16px;
+box-shadow: 0 3px 15px rgba(113,115,119,0.5);
+border: 1px solid grey;
+}
+/*Style for input and output */
+.display {
+width: 100%;
+height: 50px;
+margin: 10px;
+font-size: 40px;
+text-align: right;
+padding: 24px;
+border: none;
+background: transparent;
+box-shadow: 0px 3px 15px rgba(84,84,84,0.5);
+
+}
+
+/* Style for button */
+button {
+width: 60px;
+height: 60px;
+padding: 15px;
+margin: 10px;
+font-size: 20px;
+border: none;
+border-radius: 5px;
+background: transparent;
+color: white;
+box-shadow: -8px -8px 15px rgba(225,225,225,0.1);
+cursor: pointer;
+}
+/* Style for button group */
+.operator {
+width: 60px;
+height: 60px;
+background-color:saddlebrown;
+}
+/* Style for equal button */
+.equals{
+width: 60px;
+height: 60px;
+background-color:green;
+}
+</style>
+</head>
+<body>
+<div class="calculator">
+<input type="text" id="display" class="display" disabled />
+<div class="buttons">
+<button class="operator"  onclick="clearDisplay()">AC</button>
+<button class="operator"  onclick="back()">DEL</button>
+<button class="operator"  onclick="appendValue('%')">%</button>
+<button class="operator"  onclick="appendValue('/')">/</button>
+
+</div>
+<div>
+<button class="operator1" onclick="appendValue('7')">7</button>
+<button class="operator1" onclick="appendValue('8')">8</button>
+<button class="operator1" onclick="appendValue('9')">9</button>
+<button class="operator"  onclick="appendValue('*')">*</button>
+</div>
+<div>
+<button class="operator1" onclick="appendValue('4')">4</button>
+<button class="operator1" onclick="appendValue('5')">5</button>
+<button class="operator1" onclick="appendValue('6')">6</button>
+<button class="operator"  onclick="appendValue('-')">-</button>
+</div>
+<div>
+<button class="operator1" onclick="appendValue('1')">1</button>
+<button class="operator1" onclick="appendValue('2')">2</button>
+<button class="operator1" onclick="appendValue('3')">3</button>
+<button class="operator"  onclick="appendValue('+')">+</button>
+</div>
+<div>
+<button class="operator1" onclick="appendValue('00')">00</button>
+<button class="operator1" onclick="appendValue('0')">0</button>
+<button class="operator1" onclick="appendValue('.')">.</button>
+<button class="equals"    onclick="calculate()">=</button>
+</div>
+</div>
+
+<script>
+    /* Get all the button elements */
+const display = document.getElementById("display");
+/* Function to add values to the display */
+function appendValue(value) {
+display.value += value;
+}
+/* Function to clear the display */
+function clearDisplay() {
+display.value = "";
+}
+/* Function to delete last character */
+function back() {
+    display.value = display.value.slice(0, -1);
+} 
+/* Function to calculate the result */
+function calculate() {
+try {
+    /* Calculate the result and display it */
+ 
+display.value = eval(display.value);
+} catch (error) {
+    /* If error occurs, display error message */
+ 
+display.value = "Error";
+setTimeout(clearDisplay, 1500);
+}
+}
+</script>
+</body>
+</html>
